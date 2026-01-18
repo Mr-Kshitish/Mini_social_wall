@@ -21,12 +21,13 @@ function PostCard({ post }) {
       <h3 className="font-semibold text-lg">{post.username}</h3>
       <p className="my-2">{post.text}</p>
       {post.image_url && (
-        <img
-          src={`http://localhost:5000/${post.image_url}`}
-          alt="post"
-          className="w-full max-h-64 object-cover rounded mb-2"
-        />
-      )}
+  <img
+    src={`http://localhost:5000/uploads/${post.image_url}`}
+    alt="post"
+    className="rounded mt-2"
+  />
+)}
+
       <div className="flex gap-3">
         <button
           className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"

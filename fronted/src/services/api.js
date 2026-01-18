@@ -1,11 +1,33 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:8000",
+  baseURL: "http://localhost:5000", 
 });
 
-export const getPosts = () => API.get("/posts");
-export const createPost = (data) => API.post("/posts", data);
-export const likePost = (id) => API.post(`/posts/${id}/like`);
-export const getComments = (id) => API.get(`/posts/${id}/comments`);
-export const addComment = (id, data) => API.post(`/posts/${id}/comment`, data);
+
+export const getPosts = async () => {
+  const res = await API.get("/posts");
+  return res.data;
+};
+
+export const createPost = async (data) => {
+  console.log(data)
+  const res = await API.post("/posts", data); 
+  return res.data;
+
+};
+
+export const likePost = async (id) => {
+  const res = await API.post(`/posts/${id}/like`);
+  return res.data;
+};
+
+export const getComments = async (id) => {
+  const res = await API.get(`/posts/${id}/comments`);
+  return res.data;
+};
+
+export const addComment = async (id, data) => {
+  const res = await API.post(`/posts/${id}/comment`, data);
+  return res.data;
+};

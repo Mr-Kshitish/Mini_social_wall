@@ -9,10 +9,15 @@ function Feed() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
+        
         const res = await getPosts();
-        setPosts(res.data);
+        console.log(res)
+        setPosts(res || []);
+         // SAFE
+
       } catch (err) {
-        console.error(err);
+        console.error("Error fetching posts:", err);
+        setPosts([]); // fallback
       } finally {
         setLoading(false);
       }
@@ -21,7 +26,9 @@ function Feed() {
   }, []);
 
   if (loading) return <p className="text-center">Loading posts...</p>;
-  if (!posts.length) return <p className="text-center">No posts yet.</p>;
+
+  if (!Array.isArray(posts) || posts.length === 0)
+    return <p className="text-center">No posts yet.</p>;
 
   return (
     <div className="flex flex-col gap-4">

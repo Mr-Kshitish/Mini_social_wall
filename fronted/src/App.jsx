@@ -4,13 +4,15 @@ import Feed from "./pages/Feed";
 
 function App() {
   return (
-    <div className="max-w-2xl mx-auto p-4 font-sans">
-      <h1 className="text-3xl font-bold text-center mb-6 text-blue-600">
-        Mini Social Wall
-      </h1>
+    <div className="min-h-screen bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 p-6">
+      <div className="max-w-2xl mx-auto bg-white shadow-lg rounded-lg p-6">
+        <h1 className="text-3xl font-bold text-center mb-6">
+          Mini Social Wall
+        </h1>
 
-      <CreatePost />
-      <Feed />
+        <CreatePost />
+        <Feed />
+      </div>
     </div>
   );
 }

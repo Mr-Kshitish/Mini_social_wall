@@ -13,18 +13,33 @@ exports.getPosts = async (req, res) => {
 };
 
 // Create a post
+
 exports.createPost = async (req, res) => {
   try {
     const { username, text } = req.body;
-    const image_url = req.file ? req.file.filename : undefined;
 
-    const post = new Post({ username, text, image_url });
+    const image_url = req.file ? req.file.filename : null;
+
+    const post = new Post({
+      username,
+      text,
+      image_url,
+    });
+
     await post.save();
-    res.status(201).json(post);
+
+    res.status(201).json({
+      success: true,
+      post,
+    });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error: err.message,
+    });
   }
 };
+
 
 // Like a post
 exports.likePost = async (req, res) => {
